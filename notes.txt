@@ -1,0 +1,9 @@
+- Steps
+  - Create a single visual dot
+  - Assign style to do from js
+    - Grab dot with js
+    - Style dot in js
+  - Function to create a new cell
+    - Add one cell to universe div with js
+  - Create potential energy or energy that can be converted into cells
+    - 
