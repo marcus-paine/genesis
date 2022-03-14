@@ -17,10 +17,24 @@ class Energy {
 class Universe {
   constructor(size){
     this.size = size;
+    this.createSpaceArray(size);
     this.create();
   }
   size;
   space;
+  spaceArray;
+
+  createSpaceArray(size) {
+    this.spaceArray = new Array(size).fill(new Array(size).fill(0));
+  }
+
+  updateSpaceArray(x, y, size) {
+    for (let i = x; i <= (x + size); i++) {
+      for (let k = y; k <= (y + size); k++) {
+        this.spaceArray[i][k] = 1;
+      }
+    }
+  }
 
   create() {
     this.space = document.createElement('div');
@@ -35,6 +49,7 @@ class Universe {
 class Cell {
   constructor(universe, energy, color) {
     this.color = color;
+    this.size = energy.getCellSize();
     this.createCell(universe, energy, color);
   };
   size;
@@ -42,18 +57,19 @@ class Cell {
 
   createCell(universe, energy, color) {
     let newCell = document.createElement('div');
-
-    this.size = energy.getCellSize();
+    let xPosition = 500;
+    let yPosition = 300;
     
     newCell.style.position = 'absolute';
     newCell.style.width = `${this.size}px`;
     newCell.style.height = `${this.size}px`;
-    newCell.style.left = '500px';
-    newCell.style.top = '300px';
+    newCell.style.left = `${xPosition}px`;
+    newCell.style.top = `${yPosition}px`;
   
     newCell.style.borderRadius = '50%';
     newCell.style.background = color;
   
+    universe.updateSpaceArray(xPosition, yPosition, this.size);
     universe.space.appendChild(newCell);
 
     energy.updateSystemEnergy(this.size);
