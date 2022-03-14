@@ -27,6 +27,7 @@ class Universe {
     this.space.setAttribute('id', 'universe');
     this.space.style.width = `${this.size}px`;
     this.space.style.height = `${this.size}px`;
+    this.space.style.background = 'beige';
     document.body.appendChild(this.space);
   }
 }
@@ -44,13 +45,17 @@ class Cell {
 
     this.size = energy.getCellSize();
     
+    newCell.style.position = 'absolute';
     newCell.style.width = `${this.size}px`;
     newCell.style.height = `${this.size}px`;
+    newCell.style.left = '500px';
+    newCell.style.top = '300px';
+  
     newCell.style.borderRadius = '50%';
     newCell.style.background = color;
   
     universe.space.appendChild(newCell);
-  
+
     energy.updateSystemEnergy(this.size);
   }
 }
